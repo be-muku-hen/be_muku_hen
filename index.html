@@ -62,9 +62,20 @@ button:active{
 
 <h1>be_muku_hen</h1>
 
-<button>PUSH</button>
+<button onclick="showImage()">PUSH</button>
+
+<br><br>
+
+<img id="photo" src="" style="display:none; max-width:80vw; max-height:60vh;">
 
 </div>
 
+<script>
+function showImage(){
+    const img = document.getElementById("photo");
+    img.src = "images/test.jpg?" + Date.now();
+    img.style.display = "block";
+}
+</script>
 </body>
 </html>
