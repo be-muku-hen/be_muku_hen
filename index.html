@@ -1,27 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>be_muku_hen</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>be_muku_hen</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+}
+
+h1{
+    font-weight:300;
+    letter-spacing:.18em;
+    margin-bottom:60px;
+}
+
+button{
+    background:transparent;
+    color:white;
+
+    border:1px solid white;
+
+    padding:16px 55px;
+
+    font-size:18px;
+    letter-spacing:.25em;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+    background:white;
+    color:black;
+}
+
+button:active{
+    transform:scale(.96);
+}
+</style>
+
 </head>
 
-<body style="
-  background:black;
-  color:white;
-  font-family:sans-serif;
-  text-align:center;
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-">
-  
+<body>
+
+<div class="container">
+
 <h1>be_muku_hen</h1>
 
-<p>準備中</p>
+<button>PUSH</button>
+
+</div>
 
 </body>
 </html>
