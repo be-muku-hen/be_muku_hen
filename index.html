@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="be_muku_hen is an independent project that integrates diverse phenomena into symbols and reclassifies them to explore new structures of perception and thought.">
 <title>be_muku_hen</title>
 
 <style>
@@ -31,16 +30,11 @@ h1{
 button{
     background:transparent;
     color:white;
-
     border:1px solid white;
-
     padding:16px 55px;
-
     font-size:18px;
     letter-spacing:.25em;
-
     cursor:pointer;
-
     transition:.2s;
 }
 
@@ -52,22 +46,16 @@ button:hover{
 button:active{
     transform:scale(.96);
 }
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "name": "be_muku_hen",
-  "alternateName": "線と記号",
-  "description": "be_muku_hen is an art and research project exploring Lines and Symbols. It integrates movement, animation, music, photography, color, proverbs, functions, and bodily perception into symbolic units to create new structures of perception and thought.",
-  "url": "https://be-muku-hen.github.io/be_muku_hen/",
-  "inLanguage": ["ja", "en"],
-  "creator": {
-    "@type": "Organization",
-    "name": "be_muku_hen"
-  }
+
+#photo{
+    display:none;
+    max-width:80vw;
+    max-height:60vh;
+    margin-top:40px;
+    cursor:pointer;
 }
-</script>
+</style>
+
 </head>
 
 <body>
@@ -76,20 +64,49 @@ button:active{
 
 <h1>be_muku_hen</h1>
 
-<button onclick="showImage()">PUSH</button>
+<button onclick="showRandom()">PUSH</button>
 
-<br><br>
+<br>
 
-<img id="photo" src="" style="display:none; max-width:80vw; max-height:60vh;">
+<a id="postLink" target="_blank">
+    <img id="photo">
+</a>
 
 </div>
 
 <script>
-function showImage(){
-    const img = document.getElementById("photo");
-    img.src = "IMG_0051 3.jpg";
-    img.style.display = "block";
+
+const works = [
+
+{
+    image:"IMG_0051 3.jpg",
+    instagram:"https://www.instagram.com/p/ここに投稿ID/"
+},
+
+{
+    image:"IMG_0052.jpg",
+    instagram:"https://www.instagram.com/p/ここに投稿ID/"
+},
+
+{
+    image:"IMG_0053.jpg",
+    instagram:"https://www.instagram.com/p/ここに投稿ID/"
 }
+
+];
+
+function showRandom(){
+
+    const work = works[Math.floor(Math.random()*works.length)];
+
+    document.getElementById("photo").src = work.image;
+    document.getElementById("photo").style.display = "block";
+
+    document.getElementById("postLink").href = work.instagram;
+
+}
+
 </script>
+
 </body>
 </html>
