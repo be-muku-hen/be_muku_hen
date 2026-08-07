@@ -68,41 +68,20 @@ button:active{
 
 <br>
 
-<a id="postLink" target="_blank">
-    <img id="photo">
-</a>
+<img id="photo">
 
 </div>
 
 <script>
 
-const works = [
-
-{
-    image:"IMG_0051 3.jpg",
-    instagram:"https://www.instagram.com/p/ここに投稿ID/"
-},
-
-{
-    image:"IMG_0052.jpg",
-    instagram:"https://www.instagram.com/p/ここに投稿ID/"
-},
-
-{
-    image:"IMG_0053.jpg",
-    instagram:"https://www.instagram.com/p/ここに投稿ID/"
-}
-
-];
-
 function showRandom(){
 
-    const work = works[Math.floor(Math.random()*works.length)];
+    const number = Math.floor(Math.random() * 200) + 1;
 
-    document.getElementById("photo").src = work.image;
-    document.getElementById("photo").style.display = "block";
+    const img = document.getElementById("photo");
 
-    document.getElementById("postLink").href = work.instagram;
+    img.src = `線と記号_${number}.jpg`;
+    img.style.display = "block";
 
 }
 
