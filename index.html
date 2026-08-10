@@ -93,6 +93,45 @@ function showRandom(){
 
 }
 
+<script>
+
+async function showRandom(){
+
+    const apiURL =
+        "https://api.github.com/repos/be-muku-hen/be_muku_hen/contents/images";
+
+    try {
+
+        const response = await fetch(apiURL);
+        const files = await response.json();
+
+        const photos = files.filter(file =>
+            /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
+        );
+
+        if (photos.length === 0) {
+            alert("画像がありません");
+            return;
+        }
+
+        const random =
+            Math.floor(Math.random() * photos.length);
+
+        const img =
+            document.getElementById("photo");
+
+        img.src = photos[random].download_url;
+        img.style.display = "block";
+
+    } catch (error) {
+
+        console.error(error);
+        alert("画像を読み込めませんでした");
+
+    }
+
+}
+
 </script>
 
 </body>
