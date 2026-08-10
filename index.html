@@ -74,13 +74,21 @@ button:active{
 
 <script>
 
+// 現在存在する画像
+const photos = [
+    "線と記号_1.jpg",
+    "線と記号_2.jpg",
+    "線と記号_7.jpg",
+    "線と記号_15.jpg"
+];
+
 function showRandom(){
 
-    const number = Math.floor(Math.random() * 200) + 1;
+    const number = Math.floor(Math.random() * photos.length);
 
     const img = document.getElementById("photo");
 
-    img.src = `線と記号_${number}.jpg`;
+    img.src = photos[number];
     img.style.display = "block";
 
 }
