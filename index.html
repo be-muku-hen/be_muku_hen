@@ -55,7 +55,6 @@ button:active{
     margin-top:40px;
     cursor:pointer;
 }
-    
 </style>
 
 </head>
@@ -76,6 +75,8 @@ button:active{
 
 <script>
 
+let currentInstagramURL = null;
+
 async function showRandom(){
 
     const apiURL =
@@ -83,9 +84,11 @@ async function showRandom(){
 
     try {
 
+        // GitHubから画像一覧を取得
         const response = await fetch(apiURL);
         const files = await response.json();
 
+        // 画像だけ取り出す
         const photos = files.filter(file =>
             /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
         );
@@ -95,14 +98,68 @@ async function showRandom(){
             return;
         }
 
+        // ランダムに1枚選ぶ
         const random =
             Math.floor(Math.random() * photos.length);
+
+        const selectedPhoto = photos[random];
 
         const img =
             document.getElementById("photo");
 
-        img.src = photos[random].download_url;
+        // 写真を表示
+        img.src = selectedPhoto.download_url;
         img.style.display = "block";
+
+
+        // -------------------------
+        // ファイル名から番号を取得
+        // -------------------------
+
+        const match =
+            selectedPhoto.name.match(/線と記号_(\d+)/);
+
+        if (!match) {
+            currentInstagramURL = null;
+            return;
+        }
+
+        const number = match[1];
+
+
+        // -------------------------
+        // CSVを取得
+        // -------------------------
+
+        const csvResponse =
+            await fetch("urls.csv");
+
+        const csvText =
+            await csvResponse.text();
+
+
+        // -------------------------
+        // CSVから番号を探す
+        // -------------------------
+
+        const lines =
+            csvText.split(/\r?\n/);
+
+        currentInstagramURL = null;
+
+        for (const line of lines) {
+
+            const columns =
+                line.split(",");
+
+            if (columns[0].trim() === number) {
+
+                currentInstagramURL =
+                    columns[1].trim();
+
+                break;
+            }
+        }
 
     } catch (error) {
 
@@ -110,8 +167,27 @@ async function showRandom(){
         alert("画像を読み込めませんでした");
 
     }
-
 }
+
+
+// -------------------------
+// 写真をタップしたらInstagramへ
+// -------------------------
+
+document.getElementById("photo").onclick = function(){
+
+    if (currentInstagramURL) {
+
+        window.location.href =
+            currentInstagramURL;
+
+    } else {
+
+        alert("この写真に対応するInstagram投稿がありません");
+
+    }
+
+};
 
 </script>
 
